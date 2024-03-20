@@ -10,3 +10,17 @@ static float average(int[] tab)
     Array.ForEach(tab, x => sum += x);
     return sum / tab.Length;
 }
+
+
+static int max(int[] tab)
+{
+    int currentMax = 0;
+    Array.ForEach(tab, x =>
+    {
+        if (x > currentMax)
+        {
+            currentMax = x;
+        }
+    });
+    return currentMax;
+}
