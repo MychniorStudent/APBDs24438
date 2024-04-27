@@ -1,0 +1,6 @@
+@AnimalManager_HostAddress = http://localhost:5199
+
+GET {{AnimalManager_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
