@@ -9,15 +9,17 @@ namespace AnimalManager.Services
     public class DBRepository : IDBRepository
     {
         private IConfiguration _configuration;
+        private readonly string dbadress = "";
         public DBRepository(IConfiguration configuration)
         {
                _configuration = configuration;
+                dbadress = _configuration.GetConnectionString("pjatkowaded");
         }
         public List<Animal> GetAllAnimals()
         {
             List<Animal> result = new List<Animal>();
             string queryString ="SELECT * FROM dbo.Animal;";
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("mssqldb")))
+            using (SqlConnection connection = new SqlConnection(dbadress))
             {
                 SqlCommand command = new SqlCommand(
                     queryString, connection);
@@ -44,11 +46,12 @@ namespace AnimalManager.Services
 
         public Animal GetAnimalById(int id)
         {
-            try { 
-                string queryString = String.Format("SELECT * FROM dbo.Animal WHERE IDAnimal = {0};",id);
-                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("mssqldb")))
+            try {
+                string queryString = "SELECT * FROM dbo.Animal WHERE IDAnimal = @Id;";
+                using (SqlConnection connection = new SqlConnection(dbadress))
                 {
                     SqlCommand command = new SqlCommand(queryString, connection);
+                    command.Parameters.AddWithValue("@id", id);
                     connection.Open();
                     using(SqlDataReader reader = command.ExecuteReader())
                     {
@@ -82,15 +85,20 @@ namespace AnimalManager.Services
                 Category = !animal.Category.IsNullOrEmpty() ? animal.Category : oldAnimal.Category,
                 Area = !animal.Area.IsNullOrEmpty() ? animal.Area : oldAnimal.Area,
             };
-            string queryString = String.Format("UPDATE dbo.Animal SET Name = \'{0}\', Description = \'{1}\', Category = \'{2}\', Area = \'{3}\' WHERE IDAnimal = {4}",
+            string queryString = String.Format("UPDATE dbo.Animal SET Name = @Name, Description = @Description, Category = @Category, Area = @Area WHERE IDAnimal = @id",
                 newAnimal.Name,
                 newAnimal.Description,
                 newAnimal.Category,
                 newAnimal.Area,
                 id);
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("mssqldb")))
+            using (SqlConnection connection = new SqlConnection(dbadress))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
+                    command.Parameters.AddWithValue("@Name", newAnimal.Name);
+                    command.Parameters.AddWithValue("@Description", newAnimal.Description);
+                    command.Parameters.AddWithValue("@Category", newAnimal.Category);
+                    command.Parameters.AddWithValue("@Area", newAnimal.Area);
+                    command.Parameters.AddWithValue("@id", id);
                 connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -105,10 +113,11 @@ namespace AnimalManager.Services
         {
             try
             {
-                string queryString = String.Format("delete FROM dbo.Animal WHERE IDAnimal = {0};", id);
-                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("mssqldb")))
+                string queryString = "delete FROM dbo.Animal WHERE IDAnimal = @id";
+                using (SqlConnection connection = new SqlConnection(dbadress))
                 {
                     SqlCommand command = new SqlCommand(queryString, connection);
+                    command.Parameters.AddWithValue("@id", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -123,11 +132,14 @@ namespace AnimalManager.Services
 
             try
             {
-                string queryString = String.Format("INSERT INTO dbo.Animal (Name, Description, Category, Area) VALUES ('{0}', '{1}', '{2}', '{3}');", 
-                    animal.Name, animal.Description, animal.Category, animal.Area);
-                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("mssqldb")))
+                string queryString = "INSERT INTO dbo.Animal (Name, Description, Category, Area) VALUES (@Name, @Description, @Category, @Area);";
+                using (SqlConnection connection = new SqlConnection(dbadress))
                 {
                     SqlCommand command = new SqlCommand(queryString, connection);
+                    command.Parameters.AddWithValue("@Name", animal.Name);
+                    command.Parameters.AddWithValue("@Description", animal.Description);
+                    command.Parameters.AddWithValue("@Category", animal.Category);
+                    command.Parameters.AddWithValue("@Area", animal.Area);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
