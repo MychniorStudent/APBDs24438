@@ -8,5 +8,6 @@ namespace RevenueRecognitionSystem.Application.Interfaces
 {
     public interface IConcurrencyService
     {
+        decimal GetExchangedCurrenty(decimal amount, string currency );
     }
 }

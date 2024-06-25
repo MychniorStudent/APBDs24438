@@ -1,4 +1,5 @@
-﻿using RevenueRecognitionSystem.Domain.DTOs.Revenue;
+﻿using RevenueRecognitionSystem.Application.Interfaces;
+using RevenueRecognitionSystem.Domain.DTOs.Revenue;
 using RevenueRecognitionSystem.Domain.Interfaces.Repositories;
 using RevenueRecognitionSystem.Domain.Interfaces.Services;
 using System;
@@ -13,11 +14,12 @@ namespace RevenueRecognitionSystem.Application.Implementations
     {
 
         private readonly ISoftwareSystemRepository _softwareSystemRepository;
+        private readonly IConcurrencyService _concurenctyService;
 
-        public RevenueService(ISoftwareSystemRepository softwareSystemRepository)
+        public RevenueService(ISoftwareSystemRepository softwareSystemRepository, IConcurrencyService concurrencyService)
         {
             _softwareSystemRepository = softwareSystemRepository;
-
+            _concurenctyService = concurrencyService;
         }
         public GetRevenueResponseDTO GetPredictedRevenue(GetRevenueDTO request)
         {
@@ -38,7 +40,11 @@ namespace RevenueRecognitionSystem.Application.Implementations
             }
             if(request.SpecificCurrency != null)
             {
+                if(result.EntireCompanyRevenue.HasValue)
+                    result.EntireCompanyRevenue = _concurenctyService.GetExchangedCurrenty(result.EntireCompanyRevenue.Value, request.SpecificCurrency);
 
+                if (result.SpecifiedProductRevenue.HasValue)
+                    result.SpecifiedProductRevenue = _concurenctyService.GetExchangedCurrenty(result.SpecifiedProductRevenue.Value, request.SpecificCurrency);
             }
             return result;
         }
@@ -62,7 +68,11 @@ namespace RevenueRecognitionSystem.Application.Implementations
             }
             if (request.SpecificCurrency != null)
             {
+                if (result.EntireCompanyRevenue.HasValue)
+                    result.EntireCompanyRevenue = _concurenctyService.GetExchangedCurrenty(result.EntireCompanyRevenue.Value, request.SpecificCurrency);
 
+                if (result.SpecifiedProductRevenue.HasValue)
+                    result.SpecifiedProductRevenue = _concurenctyService.GetExchangedCurrenty(result.SpecifiedProductRevenue.Value, request.SpecificCurrency);
             }
             return result;
         }
