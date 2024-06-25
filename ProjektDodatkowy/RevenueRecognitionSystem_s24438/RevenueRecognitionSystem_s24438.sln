@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevenueRecognitionSystem_s24438", "RevenueRecognitionSystem_s24438.csproj", "{15B782CE-3FD3-477F-AE5A-89188DFA9768}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevenueRecognitionSystem.Domain", "..\RevenueRecognitionSystem.Domain\RevenueRecognitionSystem.Domain.csproj", "{1D724B0A-683C-4ED0-A129-F0EABD2B6B02}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevenueRecognitionSystem.Infrastructure", "..\RevenueRecognitionSystem.Infrastructure\RevenueRecognitionSystem.Infrastructure.csproj", "{87765A06-8F02-43BA-9FAF-A99AC558F7F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevenueRecognitionSystem.Application", "..\RevenueRecognitionSystem.Application\RevenueRecognitionSystem.Application.csproj", "{112BBCC9-44BF-4BDC-BA9D-FBD26CA96FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevenueRecognitionSystem.Tests", "..\RevenueRecognitionSystem.Tests\RevenueRecognitionSystem.Tests.csproj", "{CA404171-EB0F-4F17-B9A8-E4FBF29FE488}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15B782CE-3FD3-477F-AE5A-89188DFA9768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B782CE-3FD3-477F-AE5A-89188DFA9768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B782CE-3FD3-477F-AE5A-89188DFA9768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B782CE-3FD3-477F-AE5A-89188DFA9768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D724B0A-683C-4ED0-A129-F0EABD2B6B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D724B0A-683C-4ED0-A129-F0EABD2B6B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D724B0A-683C-4ED0-A129-F0EABD2B6B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D724B0A-683C-4ED0-A129-F0EABD2B6B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87765A06-8F02-43BA-9FAF-A99AC558F7F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87765A06-8F02-43BA-9FAF-A99AC558F7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87765A06-8F02-43BA-9FAF-A99AC558F7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87765A06-8F02-43BA-9FAF-A99AC558F7F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{112BBCC9-44BF-4BDC-BA9D-FBD26CA96FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{112BBCC9-44BF-4BDC-BA9D-FBD26CA96FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{112BBCC9-44BF-4BDC-BA9D-FBD26CA96FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{112BBCC9-44BF-4BDC-BA9D-FBD26CA96FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA404171-EB0F-4F17-B9A8-E4FBF29FE488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA404171-EB0F-4F17-B9A8-E4FBF29FE488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA404171-EB0F-4F17-B9A8-E4FBF29FE488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA404171-EB0F-4F17-B9A8-E4FBF29FE488}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50C2B12E-1014-4665-A3F6-9AA237736174}
+	EndGlobalSection
+EndGlobal
